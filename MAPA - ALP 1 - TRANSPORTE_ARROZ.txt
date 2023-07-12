@@ -1,0 +1,63 @@
+Algoritmo "transporte_arroz"
+// Disciplina   : [Algoritmos e Lógica de Programação]
+// Professor   : Rogério Napoleão
+// Descrição   : MAPA - Controle de custos logísticos.
+
+Var
+   // Seção de Declarações das variáveis
+   producao, capacidadeCaminhao, kmPercorridos, valorTonelada, valorQuilometro, valorTransporte, custoTotal: real
+   qtdCaminhoes, i : inteiro
+   
+Inicio
+   // Seção de Comandos, procedimento, funções, operadores, etc...
+   Escreval("-------------------------------")
+   Escreval(" CONTROLE DE CUSTOS LOGÍSTICOS ")
+   Escreval("-------------------------------")
+   Escreval("->Digite a produção em toneladas:")
+   Leia(producao)
+   Escreval("->Digite a quantidade de caminhões:")
+   Leia(qtdCaminhoes)
+   Escreval (" ")
+
+   custoTotal <- 0
+
+   Para i <- 1 até qtdCaminhoes faça
+      Escreval("->Digite a capacidade em toneladas do caminhão ", i, ":")
+      Leia(capacidadeCaminhao)
+
+      Escreval("->Digite a quantidade de quilômetros que o caminhão ", i, " percorrerá:")
+      Leia(kmPercorridos)
+
+      Escreval("->Digite o valor por tonelada em um quilômetro rodado:")
+      Leia(valorQuilometro)
+
+      Se (capacidadeCaminhao > 45) entao
+         valorTransporte <- (capacidadeCaminhao * kmPercorridos) * (valorQuilometro * (75/100))
+      Senao
+         valorTransporte <- (capacidadeCaminhao * kmPercorridos) * valorQuilometro
+      Fimse
+
+      custoTotal <- custoTotal + valorTransporte
+
+      Se (producao > capacidadeCaminhao) entao
+         producao <- producao - capacidadeCaminhao
+      Senao
+         producao <- 0
+      Fimse
+
+   Fimpara
+
+   Se (producao = 0) entao
+      Escreval(" ")
+      Escreval("--------------------------------------------------")
+      Escreval ("STATUS DA EMPRESA:")
+      Escreval("->Empresa de logística apta a realizar o contrato.")
+      Escreval("->Custo total do transporte: R$", custoTotal)
+   Senao
+      Escreval("--------------------------------------------------")
+      Escreval ("STATUS DA EMPRESA:")
+      
+      Escreval("->Empresa de logística não possui capacidade para atender toda a produção.")
+   Fimse
+
+Fimalgoritmo
